@@ -31,9 +31,20 @@ const App = () => {
     // eslint-disable-next-line
   }, [searchTerm]);
 
-  const addPlayer2Team = (player) => {
+  useEffect(() => {
+    const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
+    setDreamTeam(dreamPlayers);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    console.log("SAVING");
+    localStorage.setItem("fifa-dream-team", JSON.stringify(items));
+  };
+
+  const addPlayerToTeam = (player) => {
     const newDreamTeam = [...dreamTeam, player];
     setDreamTeam(newDreamTeam);
+    saveToLocalStorage(newDreamTeam);
   };
 
   const relegatePlayerFromTeam = (player) => {
@@ -41,6 +52,7 @@ const App = () => {
       (member) => member._id !== player._id
     );
     setDreamTeam(newDreamTeam);
+    saveToLocalStorage(newDreamTeam);
   };
 
   return (
@@ -56,7 +68,7 @@ const App = () => {
         header={searchTerm ? null : "Player Search Results"}
         players={players}
         DreamTeamComponent={Add2Team}
-        handleDreamTeamClick={addPlayer2Team}
+        handleDreamTeamClick={addPlayerToTeam}
       />
       <div className="flex mx-20 w-full ">
         <div className=" text-2xl mt-10">Dream Team</div>
