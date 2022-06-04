@@ -8,9 +8,9 @@ import Add2Team from "../components/Add2Team";
 import RelegateFromTeam from "../components/RelegateFromTeam";
 
 const HomePage = () => {
-  const [players, setPlayers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("Messi");
-
+  const [position2Fill, setPosition2Fill] = useState(100);
+  const [players, setPlayers] = useState([]);
   const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
 
   let navigate = useNavigate();
@@ -22,7 +22,7 @@ const HomePage = () => {
 
     const response = await fetch(url);
     const playersJSON = await response.json();
-    console.log(playersJSON);
+
     if (playersJSON && playersJSON.length > 0) {
       setPlayers(playersJSON);
     }
@@ -36,32 +36,36 @@ const HomePage = () => {
   useEffect(() => {
     const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
     setDreamTeam(dreamPlayers);
-    console.log("DREAM PLAYERS: ", dreamPlayers);
   }, []);
 
   const saveToLocalStorage = (items) => {
-    console.log("SAVING");
     localStorage.setItem("fifa-dream-team", JSON.stringify(items));
   };
 
-  const addPlayerToTeam = (player, pos) => {
+  const addPlayerToTeam = (player, spot) => {
     console.log("Trying to add player.");
-    setDreamTeam(
-      dreamTeam.map((member) =>
-        member.spot === pos
-          ? {
-              ...member,
-              player: player,
-            }
-          : { ...member }
-      )
-    );
+    console.log("IN ADDING PLAYER FUNCTION:", spot);
 
-    saveToLocalStorage(dreamTeam);
+    if (position2Fill !== 100) {
+      setDreamTeam(
+        dreamTeam.map((member) =>
+          member.spot === spot
+            ? {
+                ...member,
+                player: player,
+              }
+            : { ...member }
+        )
+      );
+
+      saveToLocalStorage(dreamTeam);
+    }
   };
 
-  const relegatePlayerFromTeam = (player, pos) => {
+  const relegatePlayerFromTeam = (pos) => {
     console.log(`Trying to remove player ${pos}.`);
+
+    setPosition2Fill(pos);
 
     setDreamTeam(
       dreamTeam.map((member) =>
@@ -104,7 +108,9 @@ const HomePage = () => {
         header={searchTerm ? null : "Player Search Results"}
         players={players}
         DreamTeamComponent={Add2Team}
-        handleDreamTeamClick={addPlayerToTeam}
+        addPlayerToTeam={addPlayerToTeam}
+        position2Fill={position2Fill}
+        setPosition2Fill={setPosition2Fill}
       />
       <div className="flex mx-20 w-full ">
         <div className=" text-2xl mt-10">Dream Team</div>
@@ -113,7 +119,9 @@ const HomePage = () => {
       <DreamTeamGrid
         players={dreamTeam}
         DreamTeamComponent={RelegateFromTeam}
-        handleDreamTeamClick={relegatePlayerFromTeam}
+        relegatePlayerFromTeam={relegatePlayerFromTeam}
+        position2Fill={position2Fill}
+        setPosition2Fill={setPosition2Fill}
       />
     </div>
   );

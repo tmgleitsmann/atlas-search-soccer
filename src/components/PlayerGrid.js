@@ -5,7 +5,9 @@ const PlayerGrid = ({
   header,
   players,
   DreamTeamComponent,
-  handleDreamTeamClick,
+  addPlayerToTeam,
+  position2Fill,
+  setPosition2Fill,
 }) => {
   return (
     <>
@@ -15,8 +17,11 @@ const PlayerGrid = ({
           <PlayerCard
             key={index}
             player={player}
+            parent="PlayerGrid"
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            addPlayerToTeam={addPlayerToTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         ))}
       </div>

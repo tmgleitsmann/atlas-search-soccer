@@ -5,7 +5,9 @@ const DreamTeamGrid = ({
   header,
   players,
   DreamTeamComponent,
-  handleDreamTeamClick,
+  relegatePlayerFromTeam,
+  position2Fill,
+  setPosition2Fill,
 }) => {
   console.log("PLAYERS: ", players);
   return (
@@ -17,7 +19,9 @@ const DreamTeamGrid = ({
             player={players[8].player}
             spot={8}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-4 rounded-lg min-5-[50px]">
@@ -25,7 +29,9 @@ const DreamTeamGrid = ({
             player={players[9].player}
             spot={9}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-7 rounded-lg min-5-[50px]">
@@ -33,7 +39,9 @@ const DreamTeamGrid = ({
             player={players[10].player}
             spot={10}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-2 rounded-lg min-5-[50px]">
@@ -41,7 +49,9 @@ const DreamTeamGrid = ({
             player={players[5].player}
             spot={5}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-4 rounded-lg min-5-[50px]">
@@ -49,7 +59,9 @@ const DreamTeamGrid = ({
             player={players[6].player}
             spot={6}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-6 rounded-lg min-5-[50px]">
@@ -57,7 +69,9 @@ const DreamTeamGrid = ({
             player={players[7].player}
             spot={7}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-1 rounded-lg min-5-[50px]">
@@ -65,7 +79,9 @@ const DreamTeamGrid = ({
             player={players[1].player}
             spot={1}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-3 rounded-lg min-5-[50px]">
@@ -73,7 +89,9 @@ const DreamTeamGrid = ({
             player={players[2].player}
             spot={2}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-5 rounded-lg min-5-[50px]">
@@ -81,7 +99,9 @@ const DreamTeamGrid = ({
             player={players[3].player}
             spot={3}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
         <div className="col-start-7 rounded-lg min-5-[50px]">
@@ -89,7 +109,9 @@ const DreamTeamGrid = ({
             player={players[4].player}
             spot={4}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
 
@@ -98,7 +120,9 @@ const DreamTeamGrid = ({
             player={players[0].player}
             spot={players[0].spot}
             DreamTeamComponent={DreamTeamComponent}
-            handleDreamTeamClick={handleDreamTeamClick}
+            relegatePlayerFromTeam={relegatePlayerFromTeam}
+            position2Fill={position2Fill}
+            setPosition2Fill={setPosition2Fill}
           />
         </div>
       </div>

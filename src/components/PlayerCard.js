@@ -4,21 +4,25 @@ import Footballer from "../images/Footballer.png";
 const PlayerCard = ({
   player,
   spot,
+  parent,
   DreamTeamComponent,
-  handleDreamTeamClick,
+  relegatePlayerFromTeam,
+  addPlayerToTeam,
+  position2Fill,
+  setPosition2Fill,
 }) => {
   const AddDreamTeamComponent = DreamTeamComponent;
 
-  if (spot === undefined) spot = 2;
-  console.log(spot);
-
-  // const isEmpty = Object.keys(player).length === 0;
-  // console.log(isEmpty); // 👉️ true
   return (
     <div>
       {player.short_name ? (
         <div
-          onClick={() => handleDreamTeamClick(player, spot)}
+          onClick={() => {
+            console.log("TEST", position2Fill);
+            if (parent === "PlayerGrid") {
+              addPlayerToTeam(player, position2Fill);
+            } else relegatePlayerFromTeam(spot);
+          }}
           className="group relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
         >
           <div className="">{player?.long_name}</div>
@@ -58,7 +62,10 @@ const PlayerCard = ({
         </div>
       ) : (
         <div
-          onClick={() => console.log("none")}
+          onClick={() => {
+            setPosition2Fill(spot);
+            console.log("CLICKED POSITION: ", spot);
+          }}
           className="group relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
         >
           <div className="">UNKNOWN</div>
