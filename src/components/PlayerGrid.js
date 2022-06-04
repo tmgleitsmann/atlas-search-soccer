@@ -10,7 +10,7 @@ const PlayerGrid = ({
   return (
     <>
       <div className="text-lg mr-20">{header}</div>
-      <div className="grid grid-cols-6 gap-4 p-2 mt-10 md:grid-cols-6 md:gap-6">
+      <div className="grid grid-cols-6 gap-4 p-2 mt-10">
         {players.map((player, index) => (
           <PlayerCard
             key={index}
