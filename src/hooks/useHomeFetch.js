@@ -5,9 +5,10 @@ export const useHomeFetch = () => {
 
   const [players, setPlayers] = useState([]);
   const [dreamTeam, setDreamTeam] = useState(emptyTeam);
-
+  const [showDreamTeam, setShowDreamTeam] = useState(true);
   const [operator, setOperator] = useState("text");
   const [submitted, setSubmitted] = useState(false);
+  const [showPlayerChoices, setShowPlayerChoices] = useState(false);
 
   const TextEndPoint =
     "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/players";
@@ -23,6 +24,7 @@ export const useHomeFetch = () => {
     const playersJSON = await (await fetch(url)).json();
 
     if (playersJSON && playersJSON.length > 0) {
+      setShowPlayerChoices(true);
       setPlayers(playersJSON);
     }
   };
@@ -44,10 +46,12 @@ export const useHomeFetch = () => {
   }, [submitted]);
 
   useEffect(() => {
+    if (!showDreamTeam) return;
     getTeam();
+    setShowDreamTeam(false);
 
     // eslint-disable-next-line
-  }, []);
+  }, [showDreamTeam]);
 
   return {
     operator,
@@ -56,11 +60,13 @@ export const useHomeFetch = () => {
     setSearchTerm,
     players,
     setPlayers,
-
+    setShowDreamTeam,
     dreamTeam,
     setDreamTeam,
     submitted,
     setSubmitted,
+    showPlayerChoices,
+    setShowPlayerChoices,
   };
 };
 

@@ -11,7 +11,6 @@ import RelegateFromTeam from "../components/RelegateFromTeam";
 const HomePage = () => {
   const [position2Fill, setPosition2Fill] = useState(100);
   const [highlightCard, setHighlightCard] = useState(null);
-  const [showPlayerChoices, setShowPlayerChoices] = useState(true);
 
   let navigate = useNavigate();
 
@@ -22,37 +21,51 @@ const HomePage = () => {
     setSearchTerm,
     players,
     dreamTeam,
-    setDreamTeam,
-
+    setShowDreamTeam,
+    // setDreamTeam,
+    showPlayerChoices,
+    setShowPlayerChoices,
     setSubmitted,
   } = useHomeFetch();
 
   console.log("DREAM TEAM", dreamTeam);
 
-  // const saveToLocalStorage = (items) => {
-  //   localStorage.setItem("fifa-dream-team", JSON.stringify(items));
-  // };
+  // insert SAVE here
 
   const addPlayerToTeam = (player, spot) => {
     console.log("Trying to add player.");
     console.log("IN ADDING PLAYER FUNCTION:", spot);
 
-    if (position2Fill !== 100) {
-      setDreamTeam(
-        dreamTeam.map((member) =>
-          member.spot === spot
-            ? {
-                ...member,
-                player: player,
-              }
-            : { ...member }
-        )
-      );
+    let position = getPosition(spot);
 
-      // saveToLocalStorage(dreamTeam);
+    const data = {
+      position2Fill: spot,
+      newPlayer: {
+        spot: spot,
+        position: position,
+        player: player,
+      },
+    };
 
+    const URL_TO_POST_PLAYER =
+      "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/postPlayer";
+
+    const requestOptions = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(URL_TO_POST_PLAYER, requestOptions).then(() => {
+      console.log("SUBMITTED PLAYER!!");
       setHighlightCard(null);
-    }
+      setShowPlayerChoices(false);
+      setShowDreamTeam(true);
+    });
+
+    // insert big BLURB here
   };
 
   const relegatePlayerFromTeam = async (pos) => {
@@ -61,22 +74,10 @@ const HomePage = () => {
     setPosition2Fill(pos);
     const url = `https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/deletePlayer?pos=${pos}`;
     const response = await fetch(url);
-    console.log(url);
 
-    console.log(response);
+    setShowDreamTeam(true);
 
-    // setDreamTeam(
-    //   dreamTeam.map((member) =>
-    //     member.spot === pos
-    //       ? {
-    //           ...member,
-    //           player: {},
-    //         }
-    //       : { ...member }
-    //   )
-    // );
-
-    // saveToLocalStorage(dreamTeam);
+    // insert BLURB2
   };
 
   return (
@@ -151,4 +152,86 @@ const HomePage = () => {
   );
 };
 
+const getPosition = (spot) => {
+  let position = "player";
+
+  switch (spot) {
+    case 0:
+      position = "goalie";
+      break;
+    case 1:
+      position = "left-back";
+      break;
+    case 2:
+      position = "center-back-left";
+      break;
+    case 3:
+      position = "center-back-right";
+      break;
+    case 4:
+      position = "right-back";
+      break;
+    case 5:
+      position = "left-wing";
+      break;
+    case 6:
+      position = "center-mid";
+      break;
+    case 7:
+      position = "right-wing";
+      break;
+    case 8:
+      position = "forward-left";
+      break;
+    case 9:
+      position = "striker";
+      break;
+    case 10:
+      position = "forward-right";
+      break;
+    default:
+      position = "player";
+  }
+
+  return position;
+};
+
 export default HomePage;
+
+// SAVE
+// const saveToLocalStorage = (items) => {
+//   localStorage.setItem("fifa-dream-team", JSON.stringify(items));
+// };
+//------------------------------------------------------------------------------
+// bug BLURB
+//   if (position2Fill !== 100) {
+//   fetch(URL_TO_POST_PLAYER, requestOptions).then(() => {
+//     console.log("SUBMITTED PLAYER!!");
+//   });
+// }
+// if (position2Fill !== 100) {
+//   setDreamTeam(
+//     dreamTeam.map((member) =>
+//       member.spot === spot
+//         ? {
+//             ...member,
+//             player: player,
+//           }
+//         : { ...member }
+//     )
+//   );
+// saveToLocalStorage(dreamTeam);
+//------------------------------------------------------------------------------
+// BLURB 2
+// setDreamTeam(
+//   dreamTeam.map((member) =>
+//     member.spot === pos
+//       ? {
+//           ...member,
+//           player: {},
+//         }
+//       : { ...member }
+//   )
+// );
+
+// saveToLocalStorage(dreamTeam);

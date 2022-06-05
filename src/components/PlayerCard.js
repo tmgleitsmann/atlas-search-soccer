@@ -76,7 +76,6 @@ const PlayerCard = ({
             if (highlightCard === spot) setHighlightCard(null);
             else setHighlightCard(spot);
             console.log(highlightCard);
-            relegatePlayerFromTeam(spot); // ------------------------------------------------
           }}
           className={
             highlightCard === spot
