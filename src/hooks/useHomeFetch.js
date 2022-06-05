@@ -2,20 +2,23 @@ import { useState, useEffect } from "react";
 
 export const useHomeFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [position2Fill, setPosition2Fill] = useState(100);
+
   const [players, setPlayers] = useState([]);
   const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
-  //  const [highlightCard, setHighlightCard] = useState(null);
+
   const [dreamNames, setDreamNames] = useState([]);
   const [operator, setOperator] = useState("text");
   const [submitted, setSubmitted] = useState(false);
 
   const TextEndPoint =
     "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/players";
-  const WildcardEndPoint = "";
+  const WildcardEndPoint =
+    "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/wildcard";
 
   const getPlayers = async () => {
-    const API = TextEndPoint;
+    let API = TextEndPoint;
+    if (operator === "wildcard") API = WildcardEndPoint;
+
     const url = `${API}?searchTerm=${searchTerm}`;
 
     const response = await fetch(url);
@@ -25,9 +28,6 @@ export const useHomeFetch = () => {
       setPlayers(playersJSON);
     }
   };
-  //   const saveToLocalStorage = (items) => {
-  //     localStorage.setItem("fifa-dream-team", JSON.stringify(items));
-  //   };
 
   useEffect(() => {
     if (!submitted) return;
