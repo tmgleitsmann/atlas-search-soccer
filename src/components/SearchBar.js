@@ -2,9 +2,9 @@ import React from "react";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   return (
-    <div className="w-4/5 ">
+    <div className="w-3/5 ">
       <input
-        className="border border-indigo-200 w-4/5 px-6 py-2 text-2xl rounded-lg"
+        className="border border-gray-700 w-full px-6 py-2 text-2xl rounded-lg"
         placeholder="type to find players..."
         onChange={(event) => {
           if (event.target.value.length > 3) {

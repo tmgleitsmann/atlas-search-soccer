@@ -27,7 +27,11 @@ const PlayerCard = ({
               addPlayerToTeam(player, position2Fill);
             } else relegatePlayerFromTeam(spot);
           }}
-          className="group relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+          className={
+            parent === "PlayerGrid"
+              ? "relative justify-center rounded-xl  text-center shadow-xl p-6 text-white border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+              : "relative justify-center bg-opacity-50 text-center rounded-2xl text-white shadow-xl p-6 border-solid bg-black transition duration-500 transform hover:scale-110"
+          }
         >
           <div className="">{player?.long_name}</div>
           <div className="flex justify-evenly mt-4">
@@ -75,7 +79,7 @@ const PlayerCard = ({
           className={
             highlightCard === spot
               ? "relative justify-center text-center shadow-xl p-6 border-solid bg-gradient-to-r from-indigo-500 to-indigo-900  transition duration-500 transform hover:scale-110"
-              : "relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+              : "relative justify-center bg-opacity-75 text-center text-white bg-black shadow-xl p-6 transition duration-500 transform hover:scale-110"
           }
         >
           <div className="">UNKNOWN</div>

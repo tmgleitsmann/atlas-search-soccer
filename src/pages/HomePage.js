@@ -6,10 +6,9 @@ import DreamTeamGrid from "../components/DreamTeamGrid";
 import SearchBar from "../components/SearchBar";
 import Add2Team from "../components/Add2Team";
 import RelegateFromTeam from "../components/RelegateFromTeam";
-import EmptyPlayerCard from "../components/EmptyPlayerCard";
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState("Messi");
+  const [searchTerm, setSearchTerm] = useState("");
   const [position2Fill, setPosition2Fill] = useState(100);
   const [players, setPlayers] = useState([]);
   const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
@@ -99,10 +98,10 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
+        className="h-5 w-5 text-white"
         viewBox="0 0 20 20"
         fill="currentColor"
         onClick={() => navigate("/search")}
@@ -114,38 +113,51 @@ const HomePage = () => {
           clipRule="evenodd"
         />
       </svg>
-      <h2 className="text-center text-4xl text-blue-900">
-        Atlas Search Soccer
-      </h2>
+      <h2 className="text-center text-4xl text-white">Atlas Search Soccer</h2>
       <div className="flex mx-20 w-full justify-evenly items-center">
-        <div className=" text-2xl">Ballers</div>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
-      <PlayerGrid
-        header={searchTerm ? null : "Player Search Results"}
-        players={players}
-        DreamTeamComponent={Add2Team}
-        addPlayerToTeam={addPlayerToTeam}
-        position2Fill={position2Fill}
-        setPosition2Fill={setPosition2Fill}
-        setHighlightCard={setHighlightCard}
-        highlightCard={highlightCard}
-        dreamTeam={dreamTeam}
-        dreamNames={dreamNames}
+      {searchTerm !== "" && (
+        <PlayerGrid
+          header={searchTerm ? null : "Player Search Results"}
+          players={players}
+          DreamTeamComponent={Add2Team}
+          addPlayerToTeam={addPlayerToTeam}
+          position2Fill={position2Fill}
+          setPosition2Fill={setPosition2Fill}
+          setHighlightCard={setHighlightCard}
+          highlightCard={highlightCard}
+          dreamTeam={dreamTeam}
+          dreamNames={dreamNames}
+        />
+      )}
+      <br></br>
+      <hr
+        style={{
+          color: "green",
+          backgroundColor: "green",
+          height: 2,
+          borderColor: "green",
+        }}
       />
-      <div className="flex mx-20 w-full ">
-        <div className=" text-2xl mt-10">Dream Team</div>
-      </div>
+      <br></br>
 
-      <DreamTeamGrid
-        players={dreamTeam}
-        DreamTeamComponent={RelegateFromTeam}
-        relegatePlayerFromTeam={relegatePlayerFromTeam}
-        position2Fill={position2Fill}
-        setPosition2Fill={setPosition2Fill}
-        setHighlightCard={setHighlightCard}
-        highlightCard={highlightCard}
-      />
+      <div className="w-full h-96 bg-black relative">
+        <img
+          src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+          alt="stadium"
+          className="w-full h-full object-cover absolute"
+        />
+        <DreamTeamGrid
+          players={dreamTeam}
+          DreamTeamComponent={RelegateFromTeam}
+          relegatePlayerFromTeam={relegatePlayerFromTeam}
+          position2Fill={position2Fill}
+          setPosition2Fill={setPosition2Fill}
+          setHighlightCard={setHighlightCard}
+          highlightCard={highlightCard}
+        />
+      </div>
     </div>
   );
 };

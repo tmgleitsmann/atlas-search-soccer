@@ -2,7 +2,6 @@ import React from "react";
 import PlayerCard from "./PlayerCard";
 
 const DreamTeamGrid = ({
-  header,
   players,
   DreamTeamComponent,
   relegatePlayerFromTeam,
@@ -14,9 +13,8 @@ const DreamTeamGrid = ({
   console.log("PLAYERS: ", players);
   return (
     <>
-      <div className="text-lg mr-20">{header}</div>
-      <div className="grid grid-cols-7 gap-x-4 gap-y-32 p-2 mt-10">
-        <div className="col-start-1 rounded-lg min-5-[50px]">
+      <div className="grid grid-cols-7 gap-x-4 gap-y-32 p-2 mt-10 ">
+        <div className="col-start-1 rounded-lg min-5-[50px] mt-10">
           <PlayerCard
             player={players[8].player}
             spot={8}
@@ -28,7 +26,7 @@ const DreamTeamGrid = ({
             highlightCard={highlightCard}
           />
         </div>
-        <div className="col-start-4 rounded-lg min-5-[50px]">
+        <div className="col-start-4 rounded-lg min-5-[50px] mt-10">
           <PlayerCard
             player={players[9].player}
             spot={9}
@@ -40,7 +38,7 @@ const DreamTeamGrid = ({
             highlightCard={highlightCard}
           />
         </div>
-        <div className="col-start-7 rounded-lg min-5-[50px]">
+        <div className="col-start-7 rounded-lg min-5-[50px] mt-10">
           <PlayerCard
             player={players[10].player}
             spot={10}
@@ -137,7 +135,7 @@ const DreamTeamGrid = ({
           />
         </div>
 
-        <div className="col-start-4 rounded-lg min-5-[50px]">
+        <div className="col-start-4 rounded-lg min-5-[50px] mb-20">
           <PlayerCard
             player={players[0].player}
             spot={players[0].spot}
