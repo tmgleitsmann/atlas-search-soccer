@@ -1,6 +1,7 @@
 // Dependencies
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useHomeFetch } from "../hooks/useHomeFetch";
 import PlayerGrid from "../components/PlayerGrid";
 import DreamTeamGrid from "../components/DreamTeamGrid";
 import SearchBar from "../components/SearchBar";
@@ -8,53 +9,25 @@ import Add2Team from "../components/Add2Team";
 import RelegateFromTeam from "../components/RelegateFromTeam";
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [position2Fill, setPosition2Fill] = useState(100);
-  const [players, setPlayers] = useState([]);
-  const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
   const [highlightCard, setHighlightCard] = useState(null);
-  const [dreamNames, setDreamNames] = useState([]);
-  const [operator, setOperator] = useState("text");
-  const [submitted, setSubmitted] = useState(false);
+  const [showPlayerChoices, setShowPlayerChoices] = useState(true);
 
   let navigate = useNavigate();
 
-  const getPlayers = async () => {
-    const API =
-      "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/players";
-    const url = `${API}?searchTerm=${searchTerm}`;
+  const {
+    operator,
+    setOperator,
+    searchTerm,
+    setSearchTerm,
+    players,
 
-    const response = await fetch(url);
-    const playersJSON = await response.json();
+    dreamNames,
+    dreamTeam,
+    setDreamTeam,
 
-    if (playersJSON && playersJSON.length > 0) {
-      setPlayers(playersJSON);
-    }
-  };
-
-  useEffect(() => {
-    if (!submitted) return;
-    getPlayers();
-    setSubmitted(false);
-    // eslint-disable-next-line
-  }, [submitted]);
-
-  useEffect(() => {
-    const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
-
-    setDreamTeam(dreamPlayers);
-    const playerNames = [];
-    dreamPlayers.forEach((p) => {
-      if (p.player.short_name !== undefined) {
-        console.log(p.player.short_name);
-        playerNames.push(p.player.short_name);
-      }
-    });
-    setDreamNames(playerNames);
-    console.log(playerNames);
-
-    // eslint-disable-next-line
-  }, []);
+    setSubmitted,
+  } = useHomeFetch();
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem("fifa-dream-team", JSON.stringify(items));
@@ -127,20 +100,22 @@ const HomePage = () => {
           setSubmitted={setSubmitted}
         />
       </div>
-      {searchTerm !== "" && (
-        <PlayerGrid
-          header={searchTerm ? null : "Player Search Results"}
-          players={players}
-          DreamTeamComponent={Add2Team}
-          addPlayerToTeam={addPlayerToTeam}
-          position2Fill={position2Fill}
-          setPosition2Fill={setPosition2Fill}
-          setHighlightCard={setHighlightCard}
-          highlightCard={highlightCard}
-          dreamTeam={dreamTeam}
-          dreamNames={dreamNames}
-        />
-      )}
+
+      <PlayerGrid
+        header={searchTerm ? null : "Player Search Results"}
+        players={players}
+        DreamTeamComponent={Add2Team}
+        addPlayerToTeam={addPlayerToTeam}
+        position2Fill={position2Fill}
+        setPosition2Fill={setPosition2Fill}
+        setHighlightCard={setHighlightCard}
+        highlightCard={highlightCard}
+        dreamTeam={dreamTeam}
+        dreamNames={dreamNames}
+        setShowPlayerChoices={setShowPlayerChoices}
+        showPlayerChoices={showPlayerChoices}
+      />
+
       <br></br>
       <hr
         style={{
@@ -171,63 +146,5 @@ const HomePage = () => {
     </div>
   );
 };
-
-let dreamTeamArray = [
-  {
-    spot: 0,
-    position: "goalie",
-    player: {},
-  },
-  {
-    spot: 1,
-    position: "left-back",
-    player: {},
-  },
-  {
-    spot: 2,
-    position: "center-back-left",
-    player: {},
-  },
-  {
-    spot: 3,
-    position: "center-back-right",
-    player: {},
-  },
-  {
-    spot: 4,
-    position: "right-back",
-    player: {},
-  },
-  {
-    spot: 5,
-    position: "left-wing",
-    player: {},
-  },
-  {
-    spot: 6,
-    position: "center-mid",
-    player: {},
-  },
-  {
-    spot: 7,
-    position: "right-wing",
-    player: {},
-  },
-  {
-    spot: 8,
-    position: "forward-left",
-    player: {},
-  },
-  {
-    spot: 9,
-    position: "forward-center",
-    player: {},
-  },
-  {
-    spot: 10,
-    position: "forward-right",
-    player: {},
-  },
-];
 
 export default HomePage;
