@@ -8,6 +8,8 @@ const DreamTeamGrid = ({
   relegatePlayerFromTeam,
   position2Fill,
   setPosition2Fill,
+  setHighlightCard,
+  highlightCard,
 }) => {
   console.log("PLAYERS: ", players);
   return (
@@ -22,6 +24,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-4 rounded-lg min-5-[50px]">
@@ -32,6 +36,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-7 rounded-lg min-5-[50px]">
@@ -42,6 +48,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-2 rounded-lg min-5-[50px]">
@@ -52,6 +60,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-4 rounded-lg min-5-[50px]">
@@ -62,6 +72,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-6 rounded-lg min-5-[50px]">
@@ -72,6 +84,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-1 rounded-lg min-5-[50px]">
@@ -82,6 +96,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-3 rounded-lg min-5-[50px]">
@@ -92,6 +108,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-5 rounded-lg min-5-[50px]">
@@ -102,6 +120,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
         <div className="col-start-7 rounded-lg min-5-[50px]">
@@ -112,6 +132,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
 
@@ -123,6 +145,8 @@ const DreamTeamGrid = ({
             relegatePlayerFromTeam={relegatePlayerFromTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            setHighlightCard={setHighlightCard}
+            highlightCard={highlightCard}
           />
         </div>
       </div>

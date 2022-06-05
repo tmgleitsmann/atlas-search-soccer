@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footballer from "../images/Footballer.png";
 
 const PlayerCard = ({
@@ -10,6 +10,10 @@ const PlayerCard = ({
   addPlayerToTeam,
   position2Fill,
   setPosition2Fill,
+  setHighlightCard,
+  highlightCard,
+  dreamTeam,
+  dreamNames,
 }) => {
   const AddDreamTeamComponent = DreamTeamComponent;
 
@@ -65,8 +69,14 @@ const PlayerCard = ({
           onClick={() => {
             setPosition2Fill(spot);
             console.log("CLICKED POSITION: ", spot);
+            setHighlightCard(spot);
+            console.log(highlightCard);
           }}
-          className="group relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+          className={
+            highlightCard === spot
+              ? "relative justify-center text-center shadow-xl p-6 border-solid bg-gradient-to-r from-indigo-500 to-indigo-900  transition duration-500 transform hover:scale-110"
+              : "relative justify-center text-center shadow-xl p-6 border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+          }
         >
           <div className="">UNKNOWN</div>
 

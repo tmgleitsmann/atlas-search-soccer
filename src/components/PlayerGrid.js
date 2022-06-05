@@ -8,6 +8,8 @@ const PlayerGrid = ({
   addPlayerToTeam,
   position2Fill,
   setPosition2Fill,
+  dreamTeam,
+  dreamNames,
 }) => {
   return (
     <>
@@ -22,6 +24,8 @@ const PlayerGrid = ({
             addPlayerToTeam={addPlayerToTeam}
             position2Fill={position2Fill}
             setPosition2Fill={setPosition2Fill}
+            dreamTeam={dreamTeam}
+            dreamNames={dreamNames}
           />
         ))}
       </div>

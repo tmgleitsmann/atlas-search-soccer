@@ -6,12 +6,15 @@ import DreamTeamGrid from "../components/DreamTeamGrid";
 import SearchBar from "../components/SearchBar";
 import Add2Team from "../components/Add2Team";
 import RelegateFromTeam from "../components/RelegateFromTeam";
+import EmptyPlayerCard from "../components/EmptyPlayerCard";
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("Messi");
   const [position2Fill, setPosition2Fill] = useState(100);
   const [players, setPlayers] = useState([]);
   const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
+  const [highlightCard, setHighlightCard] = useState(null);
+  const [dreamNames, setDreamNames] = useState([]);
 
   let navigate = useNavigate();
 
@@ -35,7 +38,19 @@ const HomePage = () => {
 
   useEffect(() => {
     const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
+
     setDreamTeam(dreamPlayers);
+    const playerNames = [];
+    dreamPlayers.forEach((p) => {
+      if (p.player.short_name !== undefined) {
+        console.log(p.player.short_name);
+        playerNames.push(p.player.short_name);
+      }
+    });
+    setDreamNames(playerNames);
+    console.log(playerNames);
+
+    // eslint-disable-next-line
   }, []);
 
   const saveToLocalStorage = (items) => {
@@ -59,6 +74,8 @@ const HomePage = () => {
       );
 
       saveToLocalStorage(dreamTeam);
+
+      setHighlightCard(null);
     }
   };
 
@@ -111,6 +128,10 @@ const HomePage = () => {
         addPlayerToTeam={addPlayerToTeam}
         position2Fill={position2Fill}
         setPosition2Fill={setPosition2Fill}
+        setHighlightCard={setHighlightCard}
+        highlightCard={highlightCard}
+        dreamTeam={dreamTeam}
+        dreamNames={dreamNames}
       />
       <div className="flex mx-20 w-full ">
         <div className=" text-2xl mt-10">Dream Team</div>
@@ -122,6 +143,8 @@ const HomePage = () => {
         relegatePlayerFromTeam={relegatePlayerFromTeam}
         position2Fill={position2Fill}
         setPosition2Fill={setPosition2Fill}
+        setHighlightCard={setHighlightCard}
+        highlightCard={highlightCard}
       />
     </div>
   );
