@@ -14,7 +14,7 @@ const PlayerGrid = ({
   showPlayerChoices,
 }) => {
   return (
-    <div className="flex relative px-10 mb-6">
+    <div className="flex relative px-10 mb-6 transition-all duration-1000 ease-in-out">
       <img
         src={Tackle}
         alt="tackle"
@@ -38,7 +38,7 @@ const PlayerGrid = ({
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-6 gap-4 p-2 mt-10 ml-48 w-4/5"></div>
+        <div className="grid grid-cols-6 gap-2 p-2 mt-6 ml-48 w-4/5"></div>
       )}
     </div>
   );

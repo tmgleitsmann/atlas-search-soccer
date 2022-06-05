@@ -61,27 +61,34 @@ const SearchBar = ({
   //   // eslint-disable-next-line
   // }, [searchTerm]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("SUBMITTING!!!");
+    setSubmitted(true);
+  };
+  const handleChange = (event) => {
+    if (event.target.value.length > 3) {
+      setSearchTerm(event.target.value);
+    }
+  };
+
   return (
-    <div className="flex w-3/5 items-center ">
+    <form className="flex w-3/5 items-center " onSubmit={handleSubmit}>
       <input
-        className="relative border border-gray-700 w-4/5 px-6 py-2 text-2xl rounded-lg"
+        type="text"
+        className="relative border border-gray-700 w-4/5 px-6 py-2 text-2xl rounded-lg outline-none"
         placeholder="type to find players..."
-        onChange={(event) => {
-          if (event.target.value.length > 3) {
-            setSearchTerm(event.target.value);
-          }
-        }}
+        onChange={handleChange}
       ></input>
       <Selector setOperator={setOperator} />
-      <img
-        className="mx-auto w-20 text-white mb-2 content-image"
-        src={SearchIcon}
-        alt="search"
-        onClick={() => {
-          setSubmitted(true);
-          console.log("Click!");
-        }}
-      />
+      <button type="submit">
+        <img
+          className="mx-auto w-20 text-white mb-2 content-image"
+          src={SearchIcon}
+          alt="search"
+          onClick={handleSubmit}
+        />
+      </button>
       {/*showSuggestions && (
         <div className="absolute z-10 w-full bg-white rounded shadow-2xl ml-32 text-san-juan-700 top-24 font-body">
           <AutoSuggestions
@@ -94,7 +101,7 @@ const SearchBar = ({
           />
         </div>
       )*/}
-    </div>
+    </form>
   );
 };
 

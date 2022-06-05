@@ -42,6 +42,7 @@ export const useHomeFetch = () => {
     if (!submitted) return;
     getPlayers();
     setSubmitted(false);
+    console.log(operator);
     // eslint-disable-next-line
   }, [submitted]);
 
