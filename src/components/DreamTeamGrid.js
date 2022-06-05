@@ -13,7 +13,7 @@ const DreamTeamGrid = ({
   console.log("PLAYERS: ", players);
   return (
     <>
-      <div className="grid grid-cols-7 gap-x-4 gap-y-32 p-2 mt-10 ">
+      <div className="grid grid-cols-7 gap-x-4 gap-y-20 px-20 pb-20 ">
         <div className="col-start-1 rounded-lg min-5-[50px] mt-10">
           <PlayerCard
             player={players[8].player}

@@ -29,7 +29,7 @@ const PlayerCard = ({
           }}
           className={
             parent === "PlayerGrid"
-              ? "relative justify-center rounded-xl  text-center shadow-xl p-6 text-white border-solid border border-indigo-100 transition duration-500 transform hover:scale-110"
+              ? "relative justify-center rounded-xl  text-center shadow-xl p-6 text-white border-solid border border-black transition duration-500 transform hover:scale-110"
               : "relative justify-center bg-opacity-50 text-center rounded-2xl text-white shadow-xl p-6 border-solid bg-black transition duration-500 transform hover:scale-110"
           }
         >
@@ -73,12 +73,13 @@ const PlayerCard = ({
           onClick={() => {
             setPosition2Fill(spot);
             console.log("CLICKED POSITION: ", spot);
-            setHighlightCard(spot);
+            if (highlightCard === spot) setHighlightCard(null);
+            else setHighlightCard(spot);
             console.log(highlightCard);
           }}
           className={
             highlightCard === spot
-              ? "relative justify-center text-center shadow-xl p-6 border-solid bg-gradient-to-r from-indigo-500 to-indigo-900  transition duration-500 transform hover:scale-110"
+              ? "relative justify-center text-center h-64 shadow-xl p-6 border-solid bg-gradient-to-r text-white from-black to-blue-900  transition duration-500 transform hover:scale-110"
               : "relative justify-center bg-opacity-75 text-center text-white bg-black shadow-xl p-6 transition duration-500 transform hover:scale-110"
           }
         >

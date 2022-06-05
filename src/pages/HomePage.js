@@ -14,6 +14,8 @@ const HomePage = () => {
   const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
   const [highlightCard, setHighlightCard] = useState(null);
   const [dreamNames, setDreamNames] = useState([]);
+  const [operator, setOperator] = useState("text");
+  const [submitted, setSubmitted] = useState(false);
 
   let navigate = useNavigate();
 
@@ -31,9 +33,11 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    if (!submitted) return;
     getPlayers();
+    setSubmitted(false);
     // eslint-disable-next-line
-  }, [searchTerm]);
+  }, [submitted]);
 
   useEffect(() => {
     const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
@@ -115,7 +119,13 @@ const HomePage = () => {
       </svg>
       <h2 className="text-center text-4xl text-white">Atlas Search Soccer</h2>
       <div className="flex mx-20 w-full justify-evenly items-center">
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          operator={operator}
+          setOperator={setOperator}
+          setSubmitted={setSubmitted}
+        />
       </div>
       {searchTerm !== "" && (
         <PlayerGrid
@@ -142,7 +152,7 @@ const HomePage = () => {
       />
       <br></br>
 
-      <div className="w-full h-96 bg-black relative">
+      <div className="w-full bg-black relative">
         <img
           src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
           alt="stadium"
