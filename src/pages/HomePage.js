@@ -21,17 +21,17 @@ const HomePage = () => {
     searchTerm,
     setSearchTerm,
     players,
-
-    dreamNames,
     dreamTeam,
     setDreamTeam,
 
     setSubmitted,
   } = useHomeFetch();
 
-  const saveToLocalStorage = (items) => {
-    localStorage.setItem("fifa-dream-team", JSON.stringify(items));
-  };
+  console.log("DREAM TEAM", dreamTeam);
+
+  // const saveToLocalStorage = (items) => {
+  //   localStorage.setItem("fifa-dream-team", JSON.stringify(items));
+  // };
 
   const addPlayerToTeam = (player, spot) => {
     console.log("Trying to add player.");
@@ -49,29 +49,34 @@ const HomePage = () => {
         )
       );
 
-      saveToLocalStorage(dreamTeam);
+      // saveToLocalStorage(dreamTeam);
 
       setHighlightCard(null);
     }
   };
 
-  const relegatePlayerFromTeam = (pos) => {
+  const relegatePlayerFromTeam = async (pos) => {
     console.log(`Trying to remove player ${pos}.`);
 
     setPosition2Fill(pos);
+    const url = `https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/deletePlayer?pos=${pos}`;
+    const response = await fetch(url);
+    console.log(url);
 
-    setDreamTeam(
-      dreamTeam.map((member) =>
-        member.spot === pos
-          ? {
-              ...member,
-              player: {},
-            }
-          : { ...member }
-      )
-    );
+    console.log(response);
 
-    saveToLocalStorage(dreamTeam);
+    // setDreamTeam(
+    //   dreamTeam.map((member) =>
+    //     member.spot === pos
+    //       ? {
+    //           ...member,
+    //           player: {},
+    //         }
+    //       : { ...member }
+    //   )
+    // );
+
+    // saveToLocalStorage(dreamTeam);
   };
 
   return (
@@ -111,7 +116,6 @@ const HomePage = () => {
         setHighlightCard={setHighlightCard}
         highlightCard={highlightCard}
         dreamTeam={dreamTeam}
-        dreamNames={dreamNames}
         setShowPlayerChoices={setShowPlayerChoices}
         showPlayerChoices={showPlayerChoices}
       />

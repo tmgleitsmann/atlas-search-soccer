@@ -10,7 +10,6 @@ const DreamTeamGrid = ({
   setHighlightCard,
   highlightCard,
 }) => {
-  console.log("PLAYERS: ", players);
   return (
     <>
       <div className="grid grid-cols-7 gap-x-4 gap-y-20 px-20 pb-20 ">

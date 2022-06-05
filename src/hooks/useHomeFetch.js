@@ -4,9 +4,8 @@ export const useHomeFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [players, setPlayers] = useState([]);
-  const [dreamTeam, setDreamTeam] = useState(dreamTeamArray);
+  const [dreamTeam, setDreamTeam] = useState(emptyTeam);
 
-  const [dreamNames, setDreamNames] = useState([]);
   const [operator, setOperator] = useState("text");
   const [submitted, setSubmitted] = useState(false);
 
@@ -21,12 +20,20 @@ export const useHomeFetch = () => {
 
     const url = `${API}?searchTerm=${searchTerm}`;
 
-    const response = await fetch(url);
-    const playersJSON = await response.json();
+    const playersJSON = await (await fetch(url)).json();
 
     if (playersJSON && playersJSON.length > 0) {
       setPlayers(playersJSON);
     }
+  };
+
+  const getTeam = async () => {
+    const dreamPlayers = await (
+      await fetch(
+        "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/getTeam"
+      )
+    ).json();
+    setDreamTeam(dreamPlayers);
   };
 
   useEffect(() => {
@@ -37,18 +44,7 @@ export const useHomeFetch = () => {
   }, [submitted]);
 
   useEffect(() => {
-    const dreamPlayers = JSON.parse(localStorage.getItem("fifa-dream-team"));
-
-    setDreamTeam(dreamPlayers);
-    const playerNames = [];
-    dreamPlayers.forEach((p) => {
-      if (p.player.short_name !== undefined) {
-        console.log(p.player.short_name);
-        playerNames.push(p.player.short_name);
-      }
-    });
-    setDreamNames(playerNames);
-    console.log(playerNames);
+    getTeam();
 
     // eslint-disable-next-line
   }, []);
@@ -60,7 +56,7 @@ export const useHomeFetch = () => {
     setSearchTerm,
     players,
     setPlayers,
-    dreamNames,
+
     dreamTeam,
     setDreamTeam,
     submitted,
@@ -68,12 +64,13 @@ export const useHomeFetch = () => {
   };
 };
 
-let dreamTeamArray = [
+const emptyTeam = [
   {
     spot: 0,
     position: "goalie",
     player: {},
   },
+
   {
     spot: 1,
     position: "left-back",
