@@ -34,29 +34,33 @@ const PlayerCard = ({
           }
         >
           <div className="">{player?.long_name}</div>
-          <div className="flex justify-evenly mt-4">
-            <img src={player?.nation_flag_url} alt="flag"></img>
+          <div className="flex justify-evenly mt-2">
+            <img
+              src={player?.nation_flag_url}
+              className="w-8 "
+              alt="flag"
+            ></img>
             <div>{player?.nationality_name}</div>
             <div>{player?.nation_jersey_number}</div>
           </div>
           <img
             src={player?.player_face_url}
             alt="player-face"
-            className="rounded-full mt-2  mx-auto w-24"
+            className="rounded-full mt-1  mx-auto w-16"
           ></img>
 
-          <div className="flex justify-evenly items-center mt-4">
+          <div className="flex justify-evenly items-center mt-1">
             <img src={player?.club_logo_url} alt="flag" className="w-12"></img>
             <div>{player?.club_name}</div>
             <div>{player?.club_jersey_number}</div>
           </div>
-          <div className=" border border-green-400 rounded-full p-1 w-20 mx-auto">
+          <div className=" border border-green-400 rounded-full p-1 w-18 mx-auto">
             {" "}
             {player?.overall}
           </div>
           {/* <div className="text-sm mt-2">{player.player_traits}</div> */}
 
-          <div className="bottom-bar">
+          <div className="bottom-bar text-sm">
             <div className="absolute bottom-0 left-0 pl-4">
               <span className="mr-1">Scout </span>
               <span role="img" aria-label="glass">
@@ -88,7 +92,7 @@ const PlayerCard = ({
           <img
             src={Footballer}
             alt="player-face"
-            className="rounded-full mt-2  mx-auto w-24"
+            className="rounded-full mt-2  mx-auto w-12"
           ></img>
 
           {/* <div className="text-sm mt-2">{player.player_traits}</div> */}
