@@ -26,14 +26,11 @@ const SearchBar = ({
 
   return (
     <div className=" w-full items-center">
-      <form
-        className="relative flex w-3/5 mx-auto items-center"
-        onSubmit={handleSubmit}
-      >
+      <form className="flex w-3/5 mx-auto items-center" onSubmit={handleSubmit}>
         <div className="w-full flex items-center">
           <input
             type="text"
-            className="border border-gray-700 w-4/5 px-6 py-2 text-2xl rounded-lg outline-none"
+            className="relative border border-gray-700 w-4/5 px-6 py-2 text-2xl rounded-lg outline-none"
             placeholder="type to find players..."
             onChange={handleChange}
           ></input>
@@ -49,7 +46,7 @@ const SearchBar = ({
         </div>
       </form>
       {showAutocompletePlayers && (
-        <div className="absolute bottom-0 right-0 z-10  text-left w-2/5 bg-white rounded shadow-2xl">
+        <div className="absolute top-1/2 left-48 z-10  text-left w-2/5 bg-white rounded shadow-2xl">
           <AutoSuggestions
             setSearchTerm={setSearchTerm}
             searchTerm={searchTerm}
