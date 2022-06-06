@@ -9,11 +9,25 @@ export const useHomeFetch = () => {
   const [operator, setOperator] = useState("text");
   const [submitted, setSubmitted] = useState(false);
   const [showPlayerChoices, setShowPlayerChoices] = useState(false);
+  const [showAutocompletePlayers, setShowAutocompletePlayers] = useState(false);
 
   const TextEndPoint =
     "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/players";
   const WildcardEndPoint =
     "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/wildcard";
+
+  const AutocompleteEndPoint =
+    "https://us-east-1.aws.data.mongodb-api.com/app/atlassearchsoccer-ktzfd/endpoint/autocomplete";
+
+  const getPlayersAutocomplete = async () => {
+    let API = AutocompleteEndPoint;
+    const url = `${API}?searchTerm=${searchTerm}`;
+
+    const playersJSON = await (await fetch(url)).json();
+    setShowAutocompletePlayers(true);
+    setPlayers(playersJSON);
+    console.log("PLAYERSJSON: ", playersJSON);
+  };
 
   const getPlayers = async () => {
     let API = TextEndPoint;
@@ -25,7 +39,9 @@ export const useHomeFetch = () => {
 
     if (playersJSON && playersJSON.length > 0) {
       setShowPlayerChoices(true);
+
       setPlayers(playersJSON);
+      console.log("PLAYERSJSON: ", playersJSON);
     }
   };
 
@@ -37,6 +53,18 @@ export const useHomeFetch = () => {
     ).json();
     setDreamTeam(dreamPlayers);
   };
+
+  useEffect(() => {
+    if (operator !== "autocomplete") return;
+
+    if (searchTerm < 3) {
+      setShowAutocompletePlayers(false);
+      return;
+    }
+    getPlayersAutocomplete();
+
+    // eslint-disable-next-line
+  }, [searchTerm]);
 
   useEffect(() => {
     if (!submitted) return;
@@ -68,6 +96,8 @@ export const useHomeFetch = () => {
     setSubmitted,
     showPlayerChoices,
     setShowPlayerChoices,
+    showAutocompletePlayers,
+    setShowAutocompletePlayers,
   };
 };
 

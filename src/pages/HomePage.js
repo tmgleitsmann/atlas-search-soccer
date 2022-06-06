@@ -26,9 +26,11 @@ const HomePage = () => {
     showPlayerChoices,
     setShowPlayerChoices,
     setSubmitted,
+    showAutocompletePlayers,
+    setShowAutocompletePlayers,
   } = useHomeFetch();
 
-  console.log("DREAM TEAM", dreamTeam);
+  // console.log("players", players);
 
   // insert SAVE here
 
@@ -104,6 +106,9 @@ const HomePage = () => {
           operator={operator}
           setOperator={setOperator}
           setSubmitted={setSubmitted}
+          showAutocompletePlayers={showAutocompletePlayers}
+          setShowAutocompletePlayers={setShowAutocompletePlayers}
+          players={players}
         />
       </div>
 
@@ -130,7 +135,6 @@ const HomePage = () => {
           borderColor: "green",
         }}
       />
-      <br></br>
 
       <div className="w-full bg-black relative">
         <img
