@@ -58,7 +58,7 @@ export const useHomeFetch = () => {
   useEffect(() => {
     if (operator !== "autocomplete") return;
 
-    if (searchTerm < 3) {
+    if (searchTerm.length < 3) {
       setShowAutocompletePlayers(false);
       return;
     }

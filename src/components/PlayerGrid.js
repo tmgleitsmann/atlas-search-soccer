@@ -1,6 +1,7 @@
 import React from "react";
 import PlayerCard from "./PlayerCard";
 import Tackle from "../images/slide.png";
+import SearchCode from "./SearchCode";
 
 const PlayerGrid = ({
   players,
@@ -12,9 +13,11 @@ const PlayerGrid = ({
   dreamNames,
   setShowPlayerChoices,
   showPlayerChoices,
+  operator,
+  searchTerm,
 }) => {
   return (
-    <div className="flex relative px-10 mb-6 transition-all duration-1000 ease-in-out">
+    <div className="flex relative px-10 mb-6 ">
       <img
         src={Tackle}
         alt="tackle"
@@ -22,7 +25,7 @@ const PlayerGrid = ({
         onClick={() => setShowPlayerChoices(!showPlayerChoices)}
       ></img>
       {showPlayerChoices ? (
-        <div className="grid grid-cols-6 gap-4 p-2 mt-10 ml-48 w-4/5">
+        <div className="grid grid-cols-5 gap-2 p-2 mt-10 ml-48 w-full">
           {players.map((player, index) => (
             <PlayerCard
               key={index}
@@ -38,7 +41,12 @@ const PlayerGrid = ({
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-6 gap-2 p-2 mt-6 ml-48 w-4/5"></div>
+        <div className="grid grid-cols-6 gap-2 p-2 mt-6 ml-48 w-full"></div>
+      )}
+      {searchTerm !== "" && (
+        <div className="w-1/5 px-8">
+          <SearchCode operator={operator} searchTerm={searchTerm} />
+        </div>
       )}
     </div>
   );

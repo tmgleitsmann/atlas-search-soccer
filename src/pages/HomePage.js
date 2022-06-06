@@ -7,7 +7,6 @@ import DreamTeamGrid from "../components/DreamTeamGrid";
 import SearchBar from "../components/SearchBar";
 import Add2Team from "../components/Add2Team";
 import RelegateFromTeam from "../components/RelegateFromTeam";
-import AutoSuggestions from "../components/AutoSuggestions";
 
 const HomePage = () => {
   const [position2Fill, setPosition2Fill] = useState(100);
@@ -128,6 +127,8 @@ const HomePage = () => {
         dreamTeam={dreamTeam}
         setShowPlayerChoices={setShowPlayerChoices}
         showPlayerChoices={showPlayerChoices}
+        searchTerm={searchTerm}
+        operator={operator}
       />
 
       <br></br>
