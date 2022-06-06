@@ -3,8 +3,11 @@ import React from "react";
 const AutoSuggestions = ({
   setSearchTerm,
   searchTerm,
+  position2Fill,
+  addPlayerToTeam,
   setSubmitted,
   players,
+  setOperator,
   setShowAutocompletePlayers,
 }) => {
   return (
@@ -23,10 +26,10 @@ const AutoSuggestions = ({
                   className="pl-8 my-4 border-b border-gray-300 w-auto text-lg"
                   key={player._id}
                   onClick={(e) => {
-                    setSearchTerm(player.long_name);
-                    setSubmitted(true);
-
                     setShowAutocompletePlayers(false);
+                    setSearchTerm("");
+                    addPlayerToTeam(player, position2Fill);
+                    setSubmitted(true);
                   }}
                 >
                   {player.long_name}

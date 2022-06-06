@@ -25,6 +25,7 @@ export const useHomeFetch = () => {
 
     const playersJSON = await (await fetch(url)).json();
     setShowAutocompletePlayers(true);
+    setShowPlayerChoices(false);
     setPlayers(playersJSON);
     console.log("PLAYERSJSON: ", playersJSON);
   };

@@ -66,6 +66,7 @@ const HomePage = () => {
       setHighlightCard(null);
       setShowPlayerChoices(false);
       setShowDreamTeam(true);
+      setSearchTerm("");
     });
 
     // insert big BLURB here
@@ -110,6 +111,8 @@ const HomePage = () => {
           showAutocompletePlayers={showAutocompletePlayers}
           setShowAutocompletePlayers={setShowAutocompletePlayers}
           players={players}
+          addPlayerToTeam={addPlayerToTeam}
+          position2Fill={position2Fill}
         />
       </div>
 
