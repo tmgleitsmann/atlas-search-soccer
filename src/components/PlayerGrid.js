@@ -26,7 +26,7 @@ const PlayerGrid = ({
         onClick={() => setShowPlayerChoices(!showPlayerChoices)}
       ></img>
       {showPlayerChoices ? (
-        <div className="grid grid-cols-5 gap-2 p-2 mt-10 ml-48 w-full">
+        <div className="grid grid-cols-5 gap-x-2 gap-y-4 p-2 mt-10 ml-48 w-full">
           {players.map((player, index) => (
             <PlayerCard
               key={index}

@@ -51,14 +51,15 @@ const PlayerCard = ({
             <div>{player?.club_name}</div>
             <div>{player?.club_jersey_number}</div>
           </div>
-          <div className=" border border-green-400 rounded-full p-1 w-18 mx-auto">
+          <div className=" border border-green-400 rounded-full p-1  w-1/4 mx-auto">
             {" "}
             {player?.overall}
           </div>
+
           {/* <div className="text-sm mt-2">{player.player_traits}</div> */}
 
           {parent === "PlayerGrid" && (
-            <>
+            <div className="mt-6 w-4/5 mx-auto border-t border-green-400">
               {" "}
               <div
                 className="absolute bottom-0 left-0"
@@ -69,7 +70,7 @@ const PlayerCard = ({
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10"
+                  className="h-10 w-10 z-10"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -82,12 +83,13 @@ const PlayerCard = ({
                 </svg>
               </div>
               <div
-                className="absolute bottom-0 right-0"
+                className="absolute bottom-0 right-0 flex items-end"
                 onClick={() => {
                   console.log("CLICK ADD");
                   addPlayerToTeam(player, position2Fill);
                 }}
               >
+                <div className="text-lime-500">Add to Team</div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-10 w-10"
@@ -101,7 +103,7 @@ const PlayerCard = ({
                   />
                 </svg>
               </div>
-            </>
+            </div>
           )}
         </div>
       ) : (

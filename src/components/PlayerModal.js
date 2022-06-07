@@ -38,6 +38,7 @@ const PlayerModal = ({ player, setShowPlayerModal, setPlayerIndex }) => {
           className="absolute bottom-0 right-0"
           onClick={() => {
             console.log("CLICK ADD");
+            setShowPlayerModal(false);
           }}
         >
           {" "}
