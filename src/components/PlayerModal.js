@@ -1,6 +1,13 @@
 import React from "react";
 
-const PlayerModal = ({ player, setShowPlayerModal, setPlayerIndex }) => {
+const PlayerModal = ({
+  players,
+  playerIndex,
+  setShowPlayerModal,
+  setPlayerIndex,
+  addPlayerToTeam,
+  position2Fill,
+}) => {
   return (
     <div className="fixed inset-0 z-20 p-20 flex justify-center bg-slate-700 ">
       <div className="relative flex flex-col w-2/3 bg-white  border border-black rounded h-2/3 mt-60 ">
@@ -37,7 +44,8 @@ const PlayerModal = ({ player, setShowPlayerModal, setPlayerIndex }) => {
         <div
           className="absolute bottom-0 right-0"
           onClick={() => {
-            console.log("CLICK ADD");
+            console.log("CLICK ADD PLAYER: ", players[playerIndex].short_name);
+            addPlayerToTeam(players[playerIndex], position2Fill);
             setShowPlayerModal(false);
           }}
         >

@@ -161,9 +161,12 @@ const HomePage = () => {
       </div>
       {showPlayerModal ? (
         <PlayerModal
+          players={players}
           playerIndex={playerIndex}
           setShowPlayerModal={setShowPlayerModal}
           setPlayerIndex={setPlayerIndex}
+          addPlayerToTeam={addPlayerToTeam}
+          position2Fill={position2Fill}
         />
       ) : null}
     </div>
