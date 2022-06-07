@@ -5,12 +5,14 @@ import { useHomeFetch } from "../hooks/useHomeFetch";
 import PlayerGrid from "../components/PlayerGrid";
 import DreamTeamGrid from "../components/DreamTeamGrid";
 import SearchBar from "../components/SearchBar";
-import Add2Team from "../components/Add2Team";
-import RelegateFromTeam from "../components/RelegateFromTeam";
+
+import PlayerModal from "../components/PlayerModal";
 
 const HomePage = () => {
   const [position2Fill, setPosition2Fill] = useState(100);
   const [highlightCard, setHighlightCard] = useState(null);
+  const [showPlayerModal, setShowPlayerModal] = useState(false);
+  const [playerIndex, setPlayerIndex] = useState(-100);
 
   let navigate = useNavigate();
 
@@ -118,7 +120,6 @@ const HomePage = () => {
       <PlayerGrid
         header={searchTerm ? null : "Player Search Results"}
         players={players}
-        DreamTeamComponent={Add2Team}
         addPlayerToTeam={addPlayerToTeam}
         position2Fill={position2Fill}
         setPosition2Fill={setPosition2Fill}
@@ -129,6 +130,8 @@ const HomePage = () => {
         showPlayerChoices={showPlayerChoices}
         searchTerm={searchTerm}
         operator={operator}
+        setPlayerIndex={setPlayerIndex}
+        setShowPlayerModal={setShowPlayerModal}
       />
 
       <br></br>
@@ -149,7 +152,6 @@ const HomePage = () => {
         />
         <DreamTeamGrid
           players={dreamTeam}
-          DreamTeamComponent={RelegateFromTeam}
           relegatePlayerFromTeam={relegatePlayerFromTeam}
           position2Fill={position2Fill}
           setPosition2Fill={setPosition2Fill}
@@ -157,6 +159,13 @@ const HomePage = () => {
           highlightCard={highlightCard}
         />
       </div>
+      {showPlayerModal ? (
+        <PlayerModal
+          playerIndex={playerIndex}
+          setShowPlayerModal={setShowPlayerModal}
+          setPlayerIndex={setPlayerIndex}
+        />
+      ) : null}
     </div>
   );
 };

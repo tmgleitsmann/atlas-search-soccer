@@ -5,7 +5,6 @@ import SearchCode from "./SearchCode";
 
 const PlayerGrid = ({
   players,
-  DreamTeamComponent,
   addPlayerToTeam,
   position2Fill,
   setPosition2Fill,
@@ -15,6 +14,8 @@ const PlayerGrid = ({
   showPlayerChoices,
   operator,
   searchTerm,
+  setPlayerIndex,
+  setShowPlayerModal,
 }) => {
   return (
     <div className="flex relative px-10 mb-6 ">
@@ -29,14 +30,16 @@ const PlayerGrid = ({
           {players.map((player, index) => (
             <PlayerCard
               key={index}
+              index={index}
               player={player}
               parent="PlayerGrid"
-              DreamTeamComponent={DreamTeamComponent}
               addPlayerToTeam={addPlayerToTeam}
               position2Fill={position2Fill}
               setPosition2Fill={setPosition2Fill}
               dreamTeam={dreamTeam}
               dreamNames={dreamNames}
+              setPlayerIndex={setPlayerIndex}
+              setShowPlayerModal={setShowPlayerModal}
             />
           ))}
         </div>

@@ -5,27 +5,24 @@ const PlayerCard = ({
   player,
   spot,
   parent,
-  DreamTeamComponent,
   relegatePlayerFromTeam,
   addPlayerToTeam,
   position2Fill,
   setPosition2Fill,
   setHighlightCard,
   highlightCard,
+  setShowPlayerModal,
+  setPlayerIndex,
+  index,
   dreamTeam,
   dreamNames,
 }) => {
-  const AddDreamTeamComponent = DreamTeamComponent;
-
   return (
     <div>
       {player.short_name ? (
         <div
           onClick={() => {
-            console.log("TEST", position2Fill);
-            if (parent === "PlayerGrid") {
-              addPlayerToTeam(player, position2Fill);
-            } else relegatePlayerFromTeam(spot);
+            if (parent !== "PlayerGrid") relegatePlayerFromTeam(spot);
           }}
           className={
             parent === "PlayerGrid"
@@ -60,17 +57,52 @@ const PlayerCard = ({
           </div>
           {/* <div className="text-sm mt-2">{player.player_traits}</div> */}
 
-          <div className="bottom-bar text-sm">
-            <div className="absolute bottom-0 left-0 pl-4">
-              <span className="mr-1">Scout </span>
-              <span role="img" aria-label="glass">
-                🔍
-              </span>
-            </div>
-            <div className="absolute bottom-0 right-0 pr-4">
-              <AddDreamTeamComponent />
-            </div>
-          </div>
+          {parent === "PlayerGrid" && (
+            <>
+              {" "}
+              <div
+                className="absolute bottom-0 left-0"
+                onClick={() => {
+                  setShowPlayerModal(true);
+                  setPlayerIndex(index);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-10 w-10"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div
+                className="absolute bottom-0 right-0"
+                onClick={() => {
+                  console.log("CLICK ADD");
+                  addPlayerToTeam(player, position2Fill);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-10 w-10"
+                  viewBox="0 0 20 20"
+                  fill="#00ED64"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <div
