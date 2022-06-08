@@ -85,7 +85,7 @@ const PlayerCard = ({
               <div
                 className="absolute bottom-0 right-0 flex items-end"
                 onClick={() => {
-                  console.log("CLICK ADD");
+                  //console.log("CLICK ADD");
                   addPlayerToTeam(player, position2Fill);
                 }}
               >

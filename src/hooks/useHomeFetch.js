@@ -35,7 +35,7 @@ export const useHomeFetch = () => {
     if (operator === "wildcard") API = WildcardEndPoint;
 
     const url = `${API}?searchTerm=${searchTerm}`;
-
+    console.log('url to hit is: ', url);
     const playersJSON = await (await fetch(url)).json();
 
     if (playersJSON && playersJSON.length > 0) {
